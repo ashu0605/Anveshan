@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ANVESHAN | Academic Resource Search</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">A</span><span>ANVESHAN<span class="brand-dot">.</span><small>ACADEMIC RESOURCE LIBRARY</small></span></a>
+    <nav><a class="active" href="#search">Search</a><a href="#upload">Upload</a><a href="#moderation">Moderation</a></nav>
+  </header>
+
+  <main>
+    <section class="hero" id="search">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> YOUR ACADEMIC KNOWLEDGE HUB</div>
+      <h1>Find the right resource.<br /><span>Skip the folder hunt.</span></h1>
+      <p class="hero-copy">Search notes, previous-year papers and lab manuals in one place.</p>
+
+      <form id="searchForm" class="search-panel">
+        <label class="search-input-wrap"><span class="search-icon">⌕</span><input id="searchInput" type="search" placeholder="Try “DBMS mid-sem 2024”..." autocomplete="off" /></label>
+        <button class="btn btn-primary" type="submit">Search <span>→</span></button>
+        <div class="filters">
+          <label>SUBJECT<select id="subjectFilter"><option value="">All subjects</option><option>DBMS</option><option>Data Structures</option><option>Digital System Design</option><option>ADA</option><option>EVS</option></select></label>
+          <label>YEAR<select id="yearFilter"><option value="">All years</option><option>2026</option><option>2025</option><option>2024</option><option>2023</option></select></label>
+          <label>RESOURCE TYPE<select id="typeFilter"><option value="">All types</option><option>Mid-sem</option><option>End-sem</option><option>Lab Manual</option><option>Notes</option><option>Syllabus</option></select></label>
+          <button class="btn btn-light" id="clearFilters" type="button">Clear filters</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="results-section">
+      <div class="section-heading"><div><div class="eyebrow">RESOURCE CATALOGUE</div><h2>Search results</h2></div><span id="resultCount" class="result-count">0 resources</span></div>
+      <div class="table-wrap">
+        <table><thead><tr><th>RESOURCE</th><th>SUBJECT</th><th>YEAR</th><th>TYPE</th><th>FACULTY</th><th>LINK</th></tr></thead><tbody id="resultsBody"></tbody></table>
+        <div id="emptyState" class="empty-state" hidden><span class="empty-icon">⌕</span><strong>No resources found</strong><p>Try another keyword or clear the filters.</p></div>
+      </div>
+      <p class="demo-note"><span></span> Demo mode: showing sample resources until the backend API is connected.</p>
+    </section>
+
+    <section class="lower-grid">
+      <section class="content-card" id="upload">
+        <div class="card-heading"><div class="card-icon purple">↥</div><div><div class="eyebrow">CONTRIBUTE</div><h2>Submit a resource</h2></div></div>
+        <p class="muted">Share useful academic material with your classmates. Your submission will be reviewed before appearing in search.</p>
+        <form id="uploadForm" class="stack-form">
+          <label>Resource title<input name="title" required placeholder="e.g. DBMS Mid-sem Paper" /></label>
+          <div class="form-row"><label>Subject<select name="subject" required><option value="">Select subject</option><option>DBMS</option><option>Data Structures</option><option>Digital System Design</option><option>ADA</option><option>EVS</option></select></label>
+          <label>Year<select name="year" required><option value="">Select year</option><option>2026</option><option>2025</option><option>2024</option><option>2023</option></select></label></div>
+          <div class="form-row"><label>Resource type<select name="type" required><option value="">Select type</option><option>Mid-sem</option><option>End-sem</option><option>Lab Manual</option><option>Notes</option><option>Syllabus</option></select></label>
+          <label>Faculty<input name="faculty" placeholder="Faculty name (optional)" /></label></div>
+          <label>Document URL<input name="url" type="url" required placeholder="https://drive.google.com/..." /></label>
+          <button class="btn btn-primary full-width" type="submit">Submit for review <span>→</span></button>
+          <p id="uploadMessage" class="form-message" role="status"></p>
+        </form>
+      </section>
+
+      <section class="content-card" id="moderation">
+        <div class="card-heading"><div class="card-icon amber">✓</div><div><div class="eyebrow">REVIEW QUEUE</div><h2>Moderation</h2></div></div>
+        <p class="muted">Review submitted resources. Approved resources will appear in this demo's search results.</p>
+        <div class="queue-toolbar"><span id="pendingCount" class="result-count">0 pending</span><button id="resetDemo" class="text-button" type="button">Reset demo data</button></div>
+        <div id="moderationList" class="moderation-list"></div>
+        <div id="moderationEmpty" class="empty-small" hidden>No submissions waiting for review.</div>
+        <p class="demo-note"><span></span> Demo approvals are saved only in this browser session.</p>
+      </section>
+    </section>
+  </main>
+
+  <footer><a class="footer-brand" href="#">ANVESHAN.</a><span>A metadata-driven academic resource retrieval system</span><span>DBMS Project · Semester III</span></footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
